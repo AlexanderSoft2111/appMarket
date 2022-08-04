@@ -21,7 +21,7 @@
       <input matInput class="normal" maxlength="13" 
              formControlName="ruc" 
              [(ngModel)]="rucCliente" 
-             (change)="changeCodigo()"
+             (blur)="changeCodigo()"
              autocomplete="off">
       <mat-error class="normal" *ngIf="campoNoValido('ruc')">
                  La cédula <strong>es requerida</strong>

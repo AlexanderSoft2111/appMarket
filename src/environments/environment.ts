@@ -10,7 +10,7 @@ export const environment = {
     messagingSenderId: "157223563753",
     appId: "1:157223563753:web:d8879df1bdb71600ce9b78"
     },
-    uidAdmin: 'Ty3U9XoioYVYPpV8bYk8INYCh0r1',
+    uidAdmin: 'BHUaG3UA9PSNfXqKHlBHyCovLAG3',
   isAdmin: (next: any) => map( (user: any) => !!user), 
 
 

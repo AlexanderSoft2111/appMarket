@@ -46,7 +46,8 @@ export class FirestoreService {
                   console.log('get from cache');
                   resolve(doc.data());
                   return;
-                } else {
+                } 
+                else {
                   console.log('TTTTtrying to get doc from server');
                    await this.FireStore.firestore.enableNetwork();
                    this.getDocument<tipo>(enlace).then( docServer => {

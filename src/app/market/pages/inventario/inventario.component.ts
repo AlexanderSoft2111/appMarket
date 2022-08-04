@@ -89,11 +89,12 @@ export class InventarioComponent implements OnInit {
     this.productosAgotados = [];
     this.productosCaducados = [];
     this.firestoreService.getCollectionFromCache<Producto>(Paths.productos).then( res => {
+      console.log('productos',res);
       
       if (res) {
         this.productos = res;
         this.productos.forEach( producto => {
-          producto.costo_sin_iva = + producto.costo_sin_iva.toFixed(2);
+          producto.costo_sin_iva =+ producto.costo_sin_iva.toFixed(2);
           let fechaCaducada = new Date(producto.fecha_caducidad);
           let hoy = new Date();
           let day_as_milliseconds = 86400000;

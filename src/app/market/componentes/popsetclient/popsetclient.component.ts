@@ -98,10 +98,11 @@ export class PopsetclientComponent implements OnInit {
   }
 
   changeCodigo() {
+    this.findProducto(this.rucCliente);
     if(this.rucCliente !== null){
       if(this.rucCliente.length >=10){
+        console.log("me volvi a ejecutar")
         this.miFormulario.controls['ruc'].setValue(this.rucCliente);
-        this.findProducto(this.rucCliente);
       }
     }
     
