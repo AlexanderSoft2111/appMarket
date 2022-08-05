@@ -1,0 +1,186 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title><strong>{{titulo}}</strong></ion-title>
+    <ion-buttons slot="end">
+        <ion-chip color="dark" (click)="resetForm()">
+          <ion-label>Limpiar</ion-label>
+          <ion-icon name="refresh-circle"></ion-icon>
+        </ion-chip>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title><strong>{{titulo}} -- </strong> </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+    <ion-grid class="pt-5">
+
+        <ion-row class="ion-justify-content-center mb-5">
+            <ion-col size="12">
+                <div class="text-center mb-3">
+                    <ion-icon class="icon-person" name="construct"></ion-icon>
+                </div>
+                <!-- <h3 class="text-center m-3 subtitulo">Nuevo</h3> -->
+                <p class="text-center normal m-0">{{descripcion}}</p>
+            </ion-col>
+            <ion-col sizeXs="12" sizeSm="10" sizeMd="7" sizeLg="7" sizeXl="6">
+                <p class="text-center normal m-0"> <strong>Escanéa el código del producto</strong></p>
+                <ion-item style="border-radius: 20px;" class="m-3">
+                    <ion-label position="floating">Código del producto:</ion-label>
+                    <ion-input #codigo class="text-center" [(ngModel)]="codigoProducto" (ionChange)="changeCodigo()"></ion-input>
+                </ion-item>
+            </ion-col>
+          </ion-row>
+
+        <form [formGroup]="articuloForm"  (ngSubmit)="onSubmit()">
+    
+          <ion-row class="ion-justify-content-center mb-5">
+    
+              <ion-col sizeXs="12" sizeSm="10" class="card-content p-md-3">
+    
+                  <mat-card style="padding: 25px;">
+    
+                      <ion-item lines="none" detail="false" class="none">
+                          <ion-label class="subtitulo m-0">
+                              Información del producto:
+                          </ion-label>
+                      </ion-item>
+
+    
+                      <div class="row">
+                          <div class="col">
+                              <mat-form-field class="full-width normal">
+                                  <input class="normal" matInput placeholder="nombre" formControlName="nombre">
+                                  <mat-error class="normal" *ngIf="campoNoValido('nombre')"
+                                      class="normal">
+                                      El nombre <strong>es requerido</strong>
+                                  </mat-error>
+                              </mat-form-field>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width normal">
+                                <input class="normal" matInput placeholder="descripción" formControlName="descripcion">
+                                <mat-error class="normal" *ngIf="campoNoValido('descripcion')">
+                                    La descripción <strong>es requerida</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width normal">
+                                <input class="normal" matInput
+                                placeholder="Código" formControlName="codigo">
+                                <!-- <mat-error class="normal" *ngIf="campoNoValido('codigo')">
+                                            El código <strong>es requerido</strong>
+                                </mat-error> -->
+                            </mat-form-field>
+                        </div>
+                     </div>
+                      <div class="row">
+                          <div class="col">
+                              <mat-form-field class="full-width normal">
+                                  <input class="normal" matInput type="number" 
+                                  placeholder="Costo de compra" formControlName="costo_compra">
+                                  <mat-error class="normal" *ngIf="campoNoValido('costo_compra')">
+                                              El costo de compra <strong>es requerido</strong>
+                                  </mat-error>
+                              </mat-form-field>
+                          </div>
+                          <div class="col">
+                              <section class="normal">
+                                <mat-checkbox class="normal" style="margin: 20px;"
+                                formControlName="check_iva">Tiene IVA?</mat-checkbox>
+                              </section>
+                          </div>
+               
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width normal">
+                                <input class="normal" matInput type="number"
+                                   placeholder="Costo sin IVA" formControlName="costo_sin_iva">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width normal">
+                                <input class="normal" matInput type="number"
+                                   placeholder="PVP" formControlName="pvp">
+                                <mat-error class="normal" *ngIf="campoNoValido('pvp')">
+                                El PVP <strong>es requerido</strong>
+                        </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width normal">
+                                <input class="normal" matInput type="number"
+                                   placeholder="Stock" formControlName="stock">
+                                <mat-error class="normal" *ngIf="campoNoValido('stock')">
+                                El stock es <strong>es requerido</strong>
+                        </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width normal">
+                                <input class="normal" matInput type="date"
+                                   placeholder="Fecha de caducidad" formControlName="fecha_caducidad">
+                                <mat-error class="normal" *ngIf="campoNoValido('fecha_caducidad')">
+                                La fecha de caducidad <strong>es requerida</strong>
+                        </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width normal">
+                                <input class="normal" matInput type="number"
+                                   placeholder="Stock Minimo" formControlName="stock_minimo">
+                                <mat-error class="normal" *ngIf="campoNoValido('stock_minimo')">
+                                El stock Minimo <strong>es requerido</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                  </mat-card>
+              </ion-col>
+    
+          </ion-row>
+    
+          <ion-row class="ion-justify-content-center mb-5">
+              <ion-col sizeXs="12" sizeSm="10" class="text-right">
+                  <button type="submit" style="background: none; border: none;">
+                      <ion-item button class="none" lines="none" detail="false" class="button-next">
+                          <ion-label class="normal font-weight-bold" style="color: white !important;">
+                              Guardar
+                          </ion-label>
+                          <ion-buttons slot="end">
+                              <ion-button>
+                                  <ion-icon slot="icon-only" name="save"></ion-icon>
+                              </ion-button>
+                          </ion-buttons>
+                      </ion-item>
+                  </button>
+              </ion-col>
+          </ion-row>
+      </form>
+
+    </ion-grid>
+
+</ion-content>

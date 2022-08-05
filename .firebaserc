@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "appmarket-68601": {
+      "hosting": {
+        "appmarketonline": [
+          "appmarketonline"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "appmarket-68601"
+  }
+}
